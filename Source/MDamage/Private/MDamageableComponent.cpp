@@ -82,7 +82,8 @@ void UMDamageableComponent::BeginPlay()
 #if ENABLE_VISUAL_LOG
 void UMDamageableComponent::GrabDebugSnapshot(FVisualLogEntry* Snapshot) const
 {
-	FVisualLogStatusCategory& CmpCategory = Snapshot->Status.Last();
+	FVisualLogStatusCategory& CmpCategory = Snapshot->Status.AddZeroed_GetRef();
+	CmpCategory.Category = TEXT("M Damageable Component");
 
 	const FString HealthDebugStr = HasInfiniteHealth()
 		                               ? TEXT("Infinite")
